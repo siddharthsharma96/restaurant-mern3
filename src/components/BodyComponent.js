@@ -60,17 +60,16 @@ const BodyComponent = () => {
   function getRestaurants() {
     console.log("fetching restaurants");
 
-    setAllRestaurants(restaurantDetails);
-    setFilteredRestaurants(restaurantDetails);
+    // setAllRestaurants(restaurantDetails);
+    // setFilteredRestaurants(restaurantDetails);
 
-    // setTimeout(() => {
-    //   fetch("http://localhost:8000")
-    //     .then((res) => res.json())
-    //     .then((response) => {
-    //       setAllRestaurants(response.resturant);
-    //       setFilteredRestaurants(response.resturant);
-    //     });
-    // }, 1000);
+    fetch("http://localhost:9000/api/restaurants")
+      .then((res) => res.json())
+      .then((response) => {
+        console.log("response", response);
+        setAllRestaurants(response);
+        setFilteredRestaurants(response);
+      });
   }
 
   function filterTopRatedRestaurants() {
@@ -102,8 +101,8 @@ const BodyComponent = () => {
         <div className="res-container">
           {filteredRestaurants.map((res) => {
             return (
-              <Link to={`restaurant/${res.id}`} key={res.id}>
-                <RestaurantCard key={res.id} res_details={res} />
+              <Link to={`restaurant/${res._id}`} key={res._id}>
+                <RestaurantCard key={res._id} res_details={res} />
               </Link>
             );
           })}
