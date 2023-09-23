@@ -13,7 +13,7 @@ app.listen("9000", () => {
 
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb+srv://sid11:Geeks123@cluster0.53u9hgq.mongodb.net/");
+mongoose.connect("mongodb+srv://sid11:Geeks123@cluster0.ebltab1.mongodb.net/");
 
 const db = mongoose.connection;
 
@@ -26,6 +26,7 @@ db.on("open", () => {
 });
 
 require("./Routes/restaurants.routes")(app);
+require("./Routes/users.routes")(app);
 
 // CRUD operations
 

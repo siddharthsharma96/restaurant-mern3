@@ -7,6 +7,7 @@ const SearchComponent = (props) => {
     console.log("restaurants", props.restaurants);
 
     console.log("searchText", searchText);
+    setSearchText(searchText);
 
     let filteredRestaurants = props.restaurants.filter((res) =>
       res.name.toLowerCase().includes(searchText.toLowerCase())
@@ -22,8 +23,7 @@ const SearchComponent = (props) => {
       <input
         type="text"
         onChange={(e) => {
-          setSearchText(e.target.value);
-          filterRestaurants(searchText);
+          filterRestaurants(e.target.value);
         }}
       ></input>
       <button onClick={(e) => filterRestaurants(searchText)}>Search</button>
