@@ -13,7 +13,7 @@ app.listen("9000", () => {
 
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb+srv://sid11:Geeks123@cluster0.ebltab1.mongodb.net/");
+mongoose.connect("mongodb+srv://anshii03:Geeks123@cluster0.kx0onpq.mongodb.net/");
 
 const db = mongoose.connection;
 

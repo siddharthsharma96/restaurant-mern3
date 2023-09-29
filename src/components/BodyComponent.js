@@ -60,8 +60,8 @@ const BodyComponent = () => {
   function getRestaurants() {
     console.log("fetching restaurants");
 
-    // setAllRestaurants(restaurantDetails);
-    // setFilteredRestaurants(restaurantDetails);
+     //setAllRestaurants(restaurantDetails);
+     //setFilteredRestaurants(restaurantDetails);
 
     fetch("http://localhost:9000/api/restaurants")
       .then((res) => res.json())
@@ -81,7 +81,7 @@ const BodyComponent = () => {
   }
 
   return (
-    <>
+    <div className="body">
       <div className="filter-bar">
         <SearchComponent
           restaurants={allRestaurants}
@@ -98,7 +98,7 @@ const BodyComponent = () => {
       {filteredRestaurants.length === 0 ? (
         <Shimmer />
       ) : (
-        <div className="res-container">
+        <div className="flex flex-wrap">
           {filteredRestaurants.map((res) => {
             return (
               <Link to={`restaurant/${res._id}`} key={res._id}>
@@ -108,7 +108,7 @@ const BodyComponent = () => {
           })}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

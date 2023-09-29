@@ -19,14 +19,15 @@ const SearchComponent = (props) => {
   }
 
   return (
-    <div className="search">
+    <div className="m-2 flex">
       <input
         type="text"
+        className="border border-solid border-black"
         onChange={(e) => {
           filterRestaurants(e.target.value);
         }}
       ></input>
-      <button onClick={(e) => filterRestaurants(searchText)}>Search</button>
+      <button className="px-4  py-2 bg-gray-100 rounded-lg" onClick={(e) => filterRestaurants(searchText)}>Search</button>
     </div>
   );
 };
