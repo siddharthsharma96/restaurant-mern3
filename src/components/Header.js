@@ -1,11 +1,19 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import AuthModal from "./AuthModal";
+import { useSelector } from "react-redux";
+import UserContext from "../common/UserContext";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { loggedInUser } = useContext(UserContext);
+
+  console.log("logged In User", loggedInUser);
+
+  const cartItems = useSelector((store) => store.cart.items);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -27,21 +35,24 @@ const Header = () => {
       <div className="nav-items">
         <ul className="flex">
           <li className="px-4">
-          <Link to="/">Home</Link>
+            <Link to="/">Home</Link>
           </li>
-         <li className="px-4">
-         <Link to="/about">About Us</Link>
-         </li>
+          <li className="px-4">
+            <Link to="/about">About Us</Link>
+          </li>
           <li>
-          <Link to="/contact">Contact Us</Link>
+            <Link to="/contact">Contact Us</Link>
           </li>
-  
-          <li> Cart</li>
+
+          <li>
+            <Link to="/cart">Cart- {cartItems.length}</Link>
+          </li>
           {isLoggedIn ? (
             <button onClick={() => setIsLoggedIn(false)}>Logout</button>
           ) : (
             <button onClick={openModal}>Login</button>
           )}
+          <li className="px-4">{loggedInUser}</li>
         </ul>
 
         <AuthModal isOpen={isModalOpen} onClose={closeModal} />

@@ -1,9 +1,10 @@
 import RestaurantCard from "./RestaurantCard";
 import SearchComponent from "./Search";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import { useOnline } from "../common/useOnline";
+import UserContext from "../common/UserContext";
 
 const restaurantDetails = [
   {
@@ -42,6 +43,10 @@ const BodyComponent = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
+  console.log("logged user", loggedInUser);
+
   function updateRestaurants(filteredRestaurants) {
     console.log("list of filetred", filteredRestaurants);
     setFilteredRestaurants(filteredRestaurants);
@@ -60,8 +65,8 @@ const BodyComponent = () => {
   function getRestaurants() {
     console.log("fetching restaurants");
 
-     //setAllRestaurants(restaurantDetails);
-     //setFilteredRestaurants(restaurantDetails);
+    //setAllRestaurants(restaurantDetails);
+    //setFilteredRestaurants(restaurantDetails);
 
     fetch("http://localhost:9000/api/restaurants")
       .then((res) => res.json())
@@ -93,6 +98,11 @@ const BodyComponent = () => {
         >
           Top Rated Restaurants
         </button>
+        <label>UserName:</label>
+        <input
+          className="border border-black"
+          onChange={(e) => setUserName(e.target.value)}
+        ></input>
       </div>
 
       {filteredRestaurants.length === 0 ? (

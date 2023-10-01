@@ -5,6 +5,10 @@ import BodyComponent from "./components/BodyComponent";
 import Footer from "./components/Footer";
 import { Outlet } from "react-router-dom";
 import "./App.css";
+import { Provider } from "react-redux";
+import appStore from "./common/appStore";
+import UserContext from "./common/UserContext";
+import { useState } from "react";
 
 /**
  *  Header
@@ -25,12 +29,16 @@ import "./App.css";
 // Component Composition
 
 function App() {
+  const [userName, setUserName] = useState("anshika");
+
   return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 }
 

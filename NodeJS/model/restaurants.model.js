@@ -12,6 +12,6 @@ const restaurantSchema = mongoose.Schema({
   deliveryTime: Number,
 });
 
-const restaurantModel = mongoose.model("restaurants", restaurantSchema);
+const restaurantModel = mongoose.model("restaurantModel", restaurantSchema);
 
 module.exports = restaurantModel;

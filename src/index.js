@@ -10,6 +10,7 @@ import Contact from "./components/Contact";
 import BodyComponent from "./components/BodyComponent";
 import Profile from "./components/Profile";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Cart from "./components/Cart";
 
 const appRouter = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:id", // dynamic routing
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
